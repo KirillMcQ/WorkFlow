@@ -14,7 +14,7 @@ export default function Navbar() {
           W
         </Link>
         <div className="flex flex-col gap-4 text-center sm:gap-16 sm:flex-row">
-          <NavLink href="/">Dashboard</NavLink>
+          <NavLink href="/dashboard">Dashboard</NavLink>
           <NavLink href="/projects">Projects</NavLink>
           <NavLink href="/todos">Todos</NavLink>
         </div>
