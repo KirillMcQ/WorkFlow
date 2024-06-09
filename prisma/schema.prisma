@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  startDate    DateTime
+  endDate      DateTime
+  uidCreated   String // The uid is supplied by Clerk, so there is no model for it, and we can just reference the id.
+  uidsAssigned String[]
+  todos        Todo[]
+}
+
+model Todo {
+  id           Int           @id @default(autoincrement())
+  title        String
+  description  String
+  uidCreated   String
+  priority     String
+  startDate    DateTime
+  endDate      DateTime
+  status       String
+  isCompleted  Boolean
+  projectId    String
+  project      Project       @relation(fields: [projectId], references: [id])
+  uidsAssigned String[]
+  comments     TodoComment[]
+}
+
+model TodoComment {
+  todoId      Int
+  uidCreated  String
+  body        String
+  dateCreated DateTime
+  todo        Todo     @relation(fields: [todoId], references: [id])
+
+  @@id([todoId, uidCreated])
+}
