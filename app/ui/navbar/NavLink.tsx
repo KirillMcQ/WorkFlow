@@ -12,12 +12,10 @@ export default function NavLink({
 }) {
   const pathname: string = usePathname();
 
-  console.log(pathname == href);
-
   return (
     <Link
       className={clsx("text-md", {
-        "border-b-2 border-primary": href == pathname,
+        "border-b-2 border-primary": pathname.startsWith(href),
       })}
       href={href}
     >

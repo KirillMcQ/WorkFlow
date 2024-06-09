@@ -5,7 +5,7 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   return (
-    <nav className="flex flex-col items-center sm:justify-start sm:h-16 p-4 sm:flex-row">
+    <nav className="flex flex-col items-center border-b border-gray-200 sm:justify-start sm:h-16 p-4 sm:flex-row">
       <div className="flex flex-col items-center gap-4 sm:gap-8 sm:flex-row">
         <Link
           className="text-5xl font-bold text-primary justify-self-start"
